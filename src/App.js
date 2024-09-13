@@ -33,6 +33,21 @@ function App() {
     setAtividade('');
   };
 
+  const removerAtividade = () => {
+    if (!atividade) return;
+
+    setEstudos((prevEstudos) => ({
+      ...prevEstudos,
+      [diaSelecionado]: {
+        ...prevEstudos[diaSelecionado],
+        [periodoSelecionado]: atividade.remove,
+      },
+    }));
+
+    // Limpar os campos após adicionar
+    setAtividade('');
+  };
+
   return (
     <div className="app-container">
       <h1>Gerenciador de Estudos 2024</h1>
@@ -60,6 +75,7 @@ function App() {
           placeholder="Ex: Matemática"
         />
         <button onClick={adicionarAtividade}>Adicionar Estudo</button>
+        <button onClick={removerAtividade}>Remover Estudo</button>
       </div>
 
       {diasDaSemana.map(dia => (
